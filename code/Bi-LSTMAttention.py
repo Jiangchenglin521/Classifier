@@ -1,6 +1,6 @@
 
 # coding = utf-8
-
+# Copyright 2019.7.01. Jiangchenglin done 
 # In[1]:
 
 import gzip
@@ -209,17 +209,7 @@ class Dataset(object):
 
     #加入自己处理数据的代码即可
 
-    # def initialize_vocabulary(self, vocabulary_path):
-    #     if gfile.Exists(vocabulary_path):
-    #         rev_vocab = []
-    #         with gfile.GFile(vocabulary_path, mode="rb") as f:
-    #             rev_vocab.extend(f.readlines())
-    #         rev_vocab = [line.strip().decode('utf8') for line in rev_vocab]
-    #         vocab = dict([(x, y) for (y, x) in enumerate(rev_vocab)])
-    #         rev_vocab = dict([(y, x) for (y, x) in enumerate(rev_vocab)])
-    #         return vocab, rev_vocab
-    #     else:
-    #         raise ValueError("Vocabulary file %s not found.", vocabulary_path)
+   
 
     def load_word_vector(self, fname):
         dic = {}
@@ -534,11 +524,7 @@ class BiLSTMAttention(object):
             outputB= tf.Variable(tf.constant(0.1, shape=[config.numClasses]), name="outputB")
             l2Loss += tf.nn.l2_loss(outputW)
             l2Loss += tf.nn.l2_loss(outputB)
-            # self.predictions = tf.nn.xw_plus_b(output, outputW, outputB, name="predictions")
-            # # self.binaryPreds = tf.cast(tf.greater_equal(self.predictions, 0.5), tf.float32, name="binaryPreds")
-            # self.binaryPreds = tf.cast(tf.greater_equal(self.predictions, 0.5), tf.float32, name="binaryPreds")
-            # self.logits = tf.nn.xw_plus_b(output, outputW, outputB, name="logits")
-            # self.predictions = tf.argmax(self.logits, -1, name="predictions")
+           
         if not inference:
             self.logits = tf.nn.xw_plus_b(output, outputW, outputB, name="logits")
             self.predictions = tf.argmax(self.logits, -1, name="predictions")
